@@ -47,6 +47,8 @@ functions.getOne = (collection, key) => {
   });
 }
 
+// updating the collection of users
+
 functions.set = (collection, key, value) => {
   return new Promise((resolve, reject) => {
     if(!collection || typeof collection !== 'string') {
@@ -67,6 +69,8 @@ functions.set = (collection, key, value) => {
     }    
   });
 }
+
+// updating the collection of purchases
 
 functions.update = (collection, key, value) => {
   return new Promise((resolve, reject) => {

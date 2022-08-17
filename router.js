@@ -25,7 +25,7 @@ router.get("/users", async (request, response) => {
     }
 })
 
-router.get("/users/user_email", async (request, response) => {
+router.post("/users/user_email", async (request, response) => {
     const { email } = request.body
     try {
         const user = await functions.getOne("users", email)
@@ -38,7 +38,7 @@ router.get("/users/user_email", async (request, response) => {
     }
 })
 
-router.post("/users/user_email", async (request, response) => {
+router.patch("/users/user_email", async (request, response) => {
 
     const { email, name, isActive, phone, revenue, agreedTerms } = request.body
 
@@ -75,7 +75,7 @@ router.get("/purchases", async (request, response) => {
     }
 })
 
-router.get("/purchases/user_email", async (request, response) => {
+router.post("/purchases/user_email", async (request, response) => {
     const { email } = request.body
     try {
         const products = await functions.getOne("purchases", email)
@@ -88,7 +88,7 @@ router.get("/purchases/user_email", async (request, response) => {
     }
 })
 
-router.post("/purchases/user_email", async (request, response) => {
+router.patch("/purchases/user_email", async (request, response) => {
 
     const { email, name, limit, interest, term, isActive } = request.body
     const productsObject = await functions.getOne("purchases", email)

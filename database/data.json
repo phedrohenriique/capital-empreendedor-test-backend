@@ -41,9 +41,9 @@
       "agreedTerms": false
     }
   },
-  "opportunities": {
+  "purchases": {
     "cliente1@example.com": {
-      "opportunities": [
+      "products": [
         {
           "name": "Institution 1",
           "limit": 50000,
@@ -60,10 +60,10 @@
       ]
     },
     "cliente2@example.com": { 
-      "opportunities": []
+      "products": []
     },
     "cliente3@example.com": {
-      "opportunities": [
+      "products": [
         {
           "name": "Instituição 2",
           "limit": 30000,
@@ -80,7 +80,7 @@
       ]
     },
     "cliente4@example.com": {
-      "opportunities": [
+      "products": [
         {
           "name": "Instituição 1",
           "limit": 5000000,
@@ -103,7 +103,7 @@
       ]
     },
     "cliente5@example.com": {
-      "opportunities": []
+      "products": []
     }
   }
 }

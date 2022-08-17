@@ -119,27 +119,6 @@
     "cliente6@example.com": {
       "products": [
         {
-          "name": "Institution 11",
-          "limit": 50000,
-          "interest": 0.045,
-          "term": 60,
-          "isActive": true
-        },
-        {
-          "name": "Institution 11",
-          "limit": 50000,
-          "interest": 0.045,
-          "term": 60,
-          "isActive": true
-        },
-        {
-          "name": "Institution 11",
-          "limit": 50000,
-          "interest": 0.045,
-          "term": 60,
-          "isActive": true
-        },
-        {
           "name": "Institution 13",
           "limit": 50000,
           "interest": 0.045,

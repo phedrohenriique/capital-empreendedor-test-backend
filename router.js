@@ -115,4 +115,21 @@ router.post("/purchases/user_email", async (request, response) => {
     }
 })
 
+router.delete("/purchases/user_email", async (request, response) => {
+
+    const { email } = request.body
+
+
+    try {
+        await functions.delete("purchases", email)
+        await functions.set("purchases", email, { products: [] })
+        console.log("data deleted")
+
+        response.status(200).json("data deleted")
+    }
+    catch (error) {
+        response.status(500).json(error)
+    }
+})
+
 module.exports = router

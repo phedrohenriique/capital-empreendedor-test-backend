@@ -119,7 +119,7 @@
     "cliente6@example.com": {
       "products": [
         {
-          "name": "Institution 13",
+          "name": "Institution 1",
           "limit": 50000,
           "interest": 0.045,
           "term": 60,

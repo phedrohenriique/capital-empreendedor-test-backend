@@ -42,6 +42,39 @@
     },
     "cliente6@example.com": {
       "name": "Cliente 6",
+      "email": "cliente6@example.com",
+      "isActive": true,
+      "phone": "(19) 99999-9999",
+      "revenue": 1000000,
+      "agreedTerms": true
+    },
+    "cliente7@example.com": {
+      "name": "Cliente 7",
+      "email": "cliente7@example.com",
+      "isActive": true,
+      "phone": "(19) 99999-9999",
+      "revenue": 1000000,
+      "agreedTerms": true
+    },
+    "cliente8@example.com": {
+      "name": "Cliente 8",
+      "email": "cliente8@example.com",
+      "isActive": true,
+      "phone": "(19) 99999-9999",
+      "revenue": 1000000,
+      "agreedTerms": true
+    },
+    "cliente10@example.com": {
+      "name": "Cliente 10",
+      "email": "cliente10@example.com",
+      "isActive": true,
+      "phone": "(19) 99999-9999",
+      "revenue": 1000000,
+      "agreedTerms": true
+    },
+    "cliente11@example.com": {
+      "name": "Cliente 11",
+      "email": "cliente11@example.com",
       "isActive": true,
       "phone": "(19) 99999-9999",
       "revenue": 1000000,
@@ -49,24 +82,6 @@
     }
   },
   "purchases": {
-    "cliente1@example.com": {
-      "products": [
-        {
-          "name": "Institution 1",
-          "limit": 50000,
-          "interest": 0.045,
-          "term": 60,
-          "isActive": true
-        },
-        {
-          "name": "Instituição 3",
-          "limit": 100000,
-          "interest": 0.035,
-          "term": 24,
-          "isActive": true
-        }
-      ]
-    },
     "cliente2@example.com": {
       "products": []
     },
@@ -124,8 +139,52 @@
           "interest": 0.045,
           "term": 60,
           "isActive": true
+        },
+        {
+          "name": "Institution 1",
+          "limit": 50000,
+          "interest": 0.045,
+          "term": 60,
+          "isActive": true
+        },
+        {
+          "name": "Institution 1",
+          "limit": 50000,
+          "interest": 0.045,
+          "term": 60,
+          "isActive": true
+        },
+        {
+          "name": "Institution 1",
+          "limit": 50000,
+          "interest": 0.045,
+          "term": 60,
+          "isActive": true
+        },
+        {
+          "name": "Institution 1",
+          "limit": 50000,
+          "interest": 0.045,
+          "term": 60,
+          "isActive": true
+        },
+        {
+          "name": "Institution 1",
+          "limit": 50000,
+          "interest": 0.045,
+          "term": 60,
+          "isActive": true
         }
       ]
+    },
+    "cliente10@example.com": {
+      "products": []
+    },
+    "cliente11@example.com": {
+      "products": []
+    },
+    "cliente1@example.com": {
+      "products": []
     }
   }
 }

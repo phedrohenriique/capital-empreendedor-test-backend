@@ -1,9 +1,6 @@
 const fs = require("fs")
 const { Router } = require('express')
 const router = Router()
-const functions = require('./database/functions')
-
-const dataFile = fs.readFileSync('./database/data.json').toString()
 
 router.get("/", (request, response) => {
     //console.log(dataFile)

@@ -16,7 +16,7 @@ router.get("/", (request, response) => {
 router.get("/users", async (request, response) => {
     try {
         const usersList = await functions.getAll("users")
-        console.log(usersList)
+        console.log("users list : ", usersList)
 
         response.status(200).json(usersList)
     }
@@ -25,7 +25,35 @@ router.get("/users", async (request, response) => {
     }
 })
 
-router.get("/users/user_email", async (request, response) => {
+router.post("/users/create", async (request, response) => {
+
+    const { email, name, isActive, phone, revenue, agreedTerms } = request.body
+
+    const object = {
+        name,
+        email,
+        isActive,
+        phone,
+        revenue,
+        agreedTerms
+    }
+
+    try {
+        const user = await functions.set("users", email, object)
+        await functions.set("purchases", email, { products: [] })
+        console.log(`user ${user.email} created`)
+
+        response.status(200).json(user)
+
+    }
+    catch (error) {
+        response.status(500).json(error)
+    }
+
+})
+
+router.post("/users/user", async (request, response) => {
+
     const { email } = request.body
     try {
         const user = await functions.getOne("users", email)
@@ -36,29 +64,7 @@ router.get("/users/user_email", async (request, response) => {
     catch (error) {
         response.status(500).json(error)
     }
-})
 
-router.post("/users/user_email", async (request, response) => {
-
-    const { email, name, isActive, phone, revenue, agreedTerms } = request.body
-
-    const object = {
-        name,
-        isActive,
-        phone,
-        revenue,
-        agreedTerms
-    }
-
-    try {
-        const user = await functions.set("users", email, object)
-        console.log("data added")
-
-        response.status(200).json(user)
-    }
-    catch (error) {
-        response.status(500).json(error)
-    }
 })
 
 ////////////////////////// purchases routes
@@ -66,7 +72,7 @@ router.post("/users/user_email", async (request, response) => {
 router.get("/purchases", async (request, response) => {
     try {
         const purchasesList = await functions.getAll("purchases")
-        console.log(purchasesList)
+        console.log("purchases list : ", purchasesList)
 
         response.status(200).json(purchasesList)
     }
@@ -75,20 +81,7 @@ router.get("/purchases", async (request, response) => {
     }
 })
 
-router.get("/purchases/user_email", async (request, response) => {
-    const { email } = request.body
-    try {
-        const products = await functions.getOne("purchases", email)
-        console.log(products)
-
-        response.status(200).json(products)
-    }
-    catch (error) {
-        response.status(500).json(error)
-    }
-})
-
-router.post("/purchases/user_email", async (request, response) => {
+router.post("/purchases/create", async (request, response) => {
 
     const { email, name, limit, interest, term, isActive } = request.body
     const productsObject = await functions.getOne("purchases", email)
@@ -105,17 +98,31 @@ router.post("/purchases/user_email", async (request, response) => {
     const productsUpdated = { products: [...products, object] }
 
     try {
-        const user = await functions.set("purchases", email, productsUpdated)
-        console.log("data added")
+        const purchases = await functions.set("purchases", email, productsUpdated)
+        console.log(`purchases list was updated with data : ${purchases.products}`)
 
-        response.status(200).json(user)
+        response.status(200).json(purchases)
     }
     catch (error) {
         response.status(500).json(error)
     }
 })
 
-router.delete("/purchases/user_email", async (request, response) => {
+router.post("/purchases/user", async (request, response) => {
+    const { email } = request.body
+    try {
+        const products = await functions.getOne("purchases", email)
+        console.log(`user ${email} has products list ${products}`)
+
+        response.status(200).json(products)
+    }
+    catch (error) {
+        response.status(500).json(error)
+    }
+})
+
+
+router.delete("/purchases/delete", async (request, response) => {
 
     const { email } = request.body
 
@@ -123,9 +130,9 @@ router.delete("/purchases/user_email", async (request, response) => {
     try {
         await functions.delete("purchases", email)
         await functions.set("purchases", email, { products: [] })
-        console.log("data deleted")
+        console.log(`user ${email} products list was deleted`)
 
-        response.status(200).json("data deleted")
+        response.status(200).json(`user ${email} products list was deleted`)
     }
     catch (error) {
         response.status(500).json(error)

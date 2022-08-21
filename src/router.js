@@ -12,6 +12,7 @@ router.get('/server', (request, response) => {
 router.get('/users', users.usersListController)
 router.post('/users/user', users.userInformationController)
 router.post('/users/create', users.userCreationController)
+router.patch('/users/edit', users.userEditController)
 
 router.get("/purchases", purchases.purchasesListController )
 router.post('/purchases/purchase', purchases.purchasesInformationController)

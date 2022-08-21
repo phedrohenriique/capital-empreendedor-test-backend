@@ -59,11 +59,6 @@
 			]
 		},
 		{
-			"user_id": 2,
-			"user_email": "client_2@gmail.com",
-			"products": []
-		},
-		{
 			"user_id": 4,
 			"user_email": "client_4@gmail.com",
 			"products": [
@@ -96,6 +91,18 @@
 					"name": "product_01",
 					"cost": 200,
 					"quantity": 5
+				}
+			]
+		},
+		{
+			"user_id": 2,
+			"user_email": "client_2@gmail.com",
+			"products": [
+				{
+					"product_id": 1,
+					"name": "product_01",
+					"cost": 200,
+					"quantity": 10
 				}
 			]
 		}

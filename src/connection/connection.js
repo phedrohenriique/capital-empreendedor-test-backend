@@ -62,7 +62,44 @@ const databaseINSERT = (insertData, table) => {
     return objectPromise
 }
 
+const databaseUPDATE = (updateData, table) => {
+    const objectPromise = new Promise((resolve, reject) => {
+        try {
+            if (table === "users") {
+                const data = JSON.parse(fs.readFileSync(path.resolve(__dirname, databaseFile)))
+                let usersList = data[table]
+                let userUpdated = {}
+                usersList.forEach((element, index, array) => {
+                    if (element.email === updateData.email) {
+                        array[index] = { ...element, ...updateData }
+                        userUpdated = { ...element, ...updateData }
+                    }
+                });
+
+                fs.writeFileSync("./src/connection/database.json", JSON.stringify({ ...data, users: [...usersList] }, null, '\t')) // null and '\t' parameters after writing are to generate a readable json file
+
+                console.log(userUpdated)
+                resolve(userUpdated)
+            }
+        }
+        catch (error) {
+            reject(error)
+        }
+    })
+
+    return objectPromise
+}
+
+const databaseDELETE = () => {
+    const objectPromise = new Promise((resolve, reject) => {
+
+    })
+
+    return objectPromise
+}
+
 module.exports = {
     database,
-    databaseINSERT
+    databaseINSERT,
+    databaseUPDATE
 }

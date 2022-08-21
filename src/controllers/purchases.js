@@ -16,18 +16,16 @@ const purchasesListController = async (request, response) => {
 const purchasesInformationController = async (request, response) => {
     const { email } = request.body
     const data = await connection.database()
+    let purchaseArray = []
 
     try {
-
         const purchases = data["purchases"]
         for (const purchase of purchases) {
             if (purchase.user_email === email) {
-                return response.status(200).json(purchase)
-            }
-            else {
-                return response.status(404).json(`Error : purchase not found`)
+                purchaseArray.push(purchase)
             }
         }
+        return response.status(200).json(purchaseArray)
     }
     catch (error) {
         console.log(`there was an error : ${error} `)

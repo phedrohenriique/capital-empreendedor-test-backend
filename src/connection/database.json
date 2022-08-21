@@ -1,0 +1,119 @@
+{
+	"information": {
+		"id_generator": 5
+	},
+	"users": [
+		{
+			"id": 1,
+			"name": "client_1",
+			"email": "client_1@gmail.com",
+			"phone": "(19) 99999-9999",
+			"cpf": "99990555599"
+		},
+		{
+			"id": 2,
+			"name": "client_2",
+			"email": "client_2@gmail.com",
+			"phone": "(19) 91111-1111",
+			"cpf": "89990555599"
+		},
+		{
+			"id": 3,
+			"name": "client_3",
+			"email": "client_3@gmail.com",
+			"phone": "(19) 99999-9999",
+			"cpf": "99990555599"
+		},
+		{
+			"id": 4,
+			"name": "client_4",
+			"email": "client_4@gmail.com",
+			"phone": "(19) 99999-9999",
+			"cpf": "99990555599"
+		},
+		{
+			"id": 5,
+			"name": "client_5",
+			"email": "client_5@gmail.com",
+			"phone": "(19) 99999-9999",
+			"cpf": "99990555599"
+		}
+	],
+	"purchases": [
+		{
+			"user_id": 1,
+			"user_email": "client_1@gmail.com",
+			"products": [
+				{
+					"product_id": 1,
+					"name": "product_01",
+					"cost": 100,
+					"quantity": 2
+				},
+				{
+					"product_id": 2,
+					"name": "product_02",
+					"cost": 200,
+					"quantity": 1
+				}
+			]
+		},
+		{
+			"user_id": 2,
+			"user_email": "client_2@gmail.com",
+			"products": []
+		},
+		{
+			"user_id": 4,
+			"user_email": "client_4@gmail.com",
+			"products": [
+				{
+					"product_id": 3,
+					"name": "product_03",
+					"cost": 1000,
+					"quantity": 1
+				},
+				{
+					"product_id": 1,
+					"name": "product_01",
+					"cost": 200,
+					"quantity": 5
+				}
+			]
+		},
+		{
+			"user_id": 4,
+			"user_email": "client_4@gmail.com",
+			"products": [
+				{
+					"product_id": 3,
+					"name": "product_03",
+					"cost": 1000,
+					"quantity": 1
+				},
+				{
+					"product_id": 1,
+					"name": "product_01",
+					"cost": 200,
+					"quantity": 5
+				}
+			]
+		}
+	],
+	"products": [
+		{
+			"product_id": 1,
+			"name": "product_01",
+			"cost": 100,
+			"total": 99,
+			"in_stock": true
+		},
+		{
+			"product_id": 2,
+			"name": "product_02",
+			"cost": 200,
+			"total": 0,
+			"in_stock": false
+		}
+	]
+}

@@ -80,7 +80,7 @@ const userEditController = async (request, response) => {
         return response.status(200).json(databaseResponse)
     }
     catch (error) {
-        return response.status(500).json(error.message)
+        return response.status(404).json(error.message)
     }
 }
 

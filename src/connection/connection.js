@@ -75,9 +75,11 @@ const databaseSELECT = (id, table) => {
 
                 // user may not have yet purchased anything so there
                 // won't be an error for that, instead an empty array returned
-                // if (userPurchases.length === 0) {
-                //     throw new tools.ServerError("Connection Server Error")
-                // }
+                // let code 404 and return error for code organization
+
+                if (userPurchases.length === 0) {
+                    throw new tools.ServerError("Connection Server Error")
+                }
 
                 resolve(userPurchases)
 
@@ -159,7 +161,19 @@ const databaseUPDATE = (id, updateData, table) => {
                 resolve(userUpdated)
             }
             if (table === "purchases") {
+                const data = JSON.parse(fs.readFileSync(path.resolve(__dirname, databaseFile)))
+                let purchasesList = data[table]
+                let purchaseUpdate = {}
+                purchasesList.forEach((element, index, array) => {
+                    if (element.purchase_id === id) {
+                        array[index] = tools.purchaseDataOrganized({ ...element, ...updateData })
+                        purchaseUpdate = tools.purchaseDataOrganized({ ...element, ...updateData })
+                    }
+                });
 
+                fs.writeFileSync("./src/connection/database.json", JSON.stringify({ ...data, purchases: [...purchasesList], }, null, '\t'))
+
+                resolve(purchaseUpdate)
             }
             if (table === "products") {
 

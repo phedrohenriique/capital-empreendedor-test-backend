@@ -18,5 +18,6 @@ router.get("/purchases", purchases.purchasesListController)
 router.get('/purchases/purchase/:id', purchases.purchasesInformationController)
 router.get('/purchases/user/:id', purchases.purchasesUserInformationController)
 router.post('/purchases/create', purchases.purchasesCreationController)
+router.patch('/purchases/purchase/:id', purchases.purchasesEditController)
 
 module.exports = router

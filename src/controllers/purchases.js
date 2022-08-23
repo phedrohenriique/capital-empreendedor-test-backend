@@ -22,7 +22,7 @@ const purchasesInformationController = async (request, response) => {
         return response.status(200).json(databaseResponse)
     }
     catch (error) {
-        return response.status(500).json(error.message)
+        return response.status(404).json(error.message)
     }
 }
 
@@ -35,7 +35,7 @@ const purchasesUserInformationController = async (request, response) => {
         return response.status(200).json(databaseResponse)
     }
     catch (error) {
-        return response.status(500).json(error.message)
+        return response.status(404).json(error.message)
     }
 }
 
@@ -58,9 +58,30 @@ const purchasesCreationController = async (request, response) => {
     }
 }
 
+const purchasesEditController = async (request, response) => {
+    const { id } = request.params
+    const idNumber = parseInt(id)
+    const { products } = request.body
+    let editPurchase = {
+        products
+    }
+    try {
+        const databasePurchase = await connection.databaseSELECT(idNumber, "purchases")
+        if (!editPurchase.products) {
+            editPurchase.products = databasePurchase.products
+        }
+        const databaseResponse = await connection.databaseUPDATE(idNumber, editPurchase, "purchases")
+        return response.status(200).json(databaseResponse)
+    }
+    catch (error) {
+        return response.status(404).json(error.message)
+    }
+}
+
 module.exports = {
     purchasesListController,
     purchasesInformationController,
     purchasesUserInformationController,
-    purchasesCreationController
+    purchasesCreationController,
+    purchasesEditController
 }

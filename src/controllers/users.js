@@ -1,38 +1,32 @@
 const connection = require('../connection/connection')
+const tools = require('../tools/functions')
 
 const usersListController = async (request, response) => {
-    const data = await connection.database()
-
     try {
+        const data = await connection.database()
         const users = data["users"]
         return response.status(200).json(users)
     }
     catch (error) {
-        console.log(`there was an error : ${error} `)
-        return response.status(500).json(error)
+        return response.status(500).json(error.message)
     }
-
-
 }
 
 const userInformationController = async (request, response) => {
-    const { email } = request.body
-    const data = await connection.database()
-    let userData = {}
+    const { id } = request.params
+    const idNumber = parseInt(id)
 
     try {
+        const databaseResponse = await connection.databaseSELECT(idNumber, "users")
 
-        const users = data["users"]
-        for (const user of users) {
-            if (user.email === email) {
-                userData = user
-            }
-        }
-        return response.status(200).json(userData)
+        // error response in javascript doesnt need to be thrown a variable, like in python languge
+        // the error is handled inside the nested promise, the reject() will thro the error if
+        // the instance of the object is started inside the function as reject(new Error())
+
+        return response.status(200).json(databaseResponse)
     }
     catch (error) {
-        console.log(`there was an error : ${error} `)
-        return response.status(500).json(error)
+        return response.status(404).json(error.message)
     }
 }
 
@@ -46,23 +40,22 @@ const userCreationController = async (request, response) => {
     }
 
     try {
+        if (!newUser.name || !newUser.email || !newUser.phone || !newUser.cpf) {
+            throw new tools.ClientError("Client Error, Invalid or Missing Inputs")
+        }
         const databaseResponse = await connection.databaseINSERT(newUser, "users")
-        if (databaseResponse) {
-            return response.status(200).json(databaseResponse)
-        }
-        else {
-            return response.status(500).json("server error, can't create user")
-        }
+        return response.status(200).json(databaseResponse)
     }
     catch (error) {
-        console.log(`there was an error : ${error} `)
-        return response.status(500).json(error)
+        return response.status(500).json(error.message)
     }
 }
 
 const userEditController = async (request, response) => {
+    const { id } = request.params
+    const idNumber = parseInt(id)
     const { name, email, phone, cpf } = request.body
-    const editUser = {
+    let editUser = {
         name,
         email,
         phone,
@@ -70,16 +63,25 @@ const userEditController = async (request, response) => {
     }
 
     try {
-        const databaseResponse = await connection.databaseUPDATE(editUser, "users")
+        const databaseUser = await connection.databaseSELECT(idNumber, "users")
+        if (!editUser.name) {
+            editUser.name = databaseUser.name
+        }
+        if (!editUser.email) {
+            editUser.email = databaseUser.email
+        }
+        if (!editUser.phone) {
+            editUser.phone = databaseUser.phone
+        }
+        if (!editUser.cpf) {
+            editUser.cpf = databaseUser.cpf
+        }
+        const databaseResponse = await connection.databaseUPDATE(idNumber, editUser, "users")
         return response.status(200).json(databaseResponse)
     }
     catch (error) {
-        console.log(`there was an error : ${error} `)
-        return response.status(500).json(error)
+        return response.status(500).json(error.message)
     }
-
-
-    return objectPromise
 }
 
 module.exports = {

@@ -1,63 +1,66 @@
 const connection = require('../connection/connection')
+const tools = require('../tools/functions')
 
 const purchasesListController = async (request, response) => {
-    const data = await connection.database()
 
     try {
+        const data = await connection.database()
         const purchases = data["purchases"]
         return response.status(200).json(purchases)
     }
     catch (error) {
-        console.log(`there was an error : ${error} `)
-        return response.status(500).json(error)
+        return response.status(500).json(error.message)
     }
 }
 
 const purchasesInformationController = async (request, response) => {
-    const { email } = request.body
-    const data = await connection.database()
-    let purchaseArray = []
+    const { id } = request.params
+    const idNumber = parseInt(id)
 
     try {
-        const purchases = data["purchases"]
-        for (const purchase of purchases) {
-            if (purchase.user_email === email) {
-                purchaseArray.push(purchase)
-            }
-        }
-        return response.status(200).json(purchaseArray)
+        const databaseResponse = await connection.databaseSELECT(idNumber, "purchases")
+        return response.status(200).json(databaseResponse)
     }
     catch (error) {
-        console.log(`there was an error : ${error} `)
-        return response.status(500).json(error)
+        return response.status(500).json(error.message)
+    }
+}
+
+const purchasesUserInformationController = async (request, response) => {
+    const { id } = request.params
+    const idNumber = parseInt(id)
+
+    try {
+        const databaseResponse = await connection.databaseSELECT(idNumber, "purchases/user")
+        return response.status(200).json(databaseResponse)
+    }
+    catch (error) {
+        return response.status(500).json(error.message)
     }
 }
 
 const purchasesCreationController = async (request, response) => {
-    const { user_id, user_email, products } = request.body
+    const { user_id, products } = request.body
     const newPurchase = {
         user_id,
-        user_email,
         products,
     }
 
     try {
+        if (!newPurchase.user_id || !products) {
+            throw new tools.ClientError("Client Error, Invalid or Missing Inputs")
+        }
         const databaseResponse = await connection.databaseINSERT(newPurchase, "purchases")
-        if (databaseResponse) {
-            return response.status(200).json(databaseResponse)
-        }
-        else {
-            return response.status(500).json("server error, can't create purchase")
-        }
+        return response.status(200).json(databaseResponse)
     }
     catch (error) {
-        console.log(`there was an error : ${error} `)
-        return response.status(500).json(error)
+        return response.status(500).json(error.message)
     }
 }
 
 module.exports = {
     purchasesListController,
     purchasesInformationController,
+    purchasesUserInformationController,
     purchasesCreationController
 }

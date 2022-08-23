@@ -1,12 +1,16 @@
 {
 	"information": {
-		"id_generator": 5
+		"id_generator": {
+			"user_id": 4,
+			"purchase_id": 4,
+			"product_id": 0
+		}
 	},
 	"users": [
 		{
 			"id": 1,
-			"name": "client_1",
-			"email": "client_1@gmail.com",
+			"name": "bolodoido",
+			"email": "client_5@gmail.com",
 			"phone": "(19) 99999-9999",
 			"cpf": "99990555599"
 		},
@@ -14,95 +18,76 @@
 			"id": 2,
 			"name": "client_2",
 			"email": "client_2@gmail.com",
-			"phone": "(19) 91111-1111",
-			"cpf": "89990555599"
-		},
-		{
-			"id": 3,
-			"name": "client_3",
-			"email": "client_3@gmail.com",
 			"phone": "(19) 99999-9999",
 			"cpf": "99990555599"
 		},
 		{
-			"id": 4,
-			"name": "client_4",
+			"id": 3,
+			"name": "double barrel",
 			"email": "client_4@gmail.com",
 			"phone": "(19) 99999-9999",
 			"cpf": "99990555599"
 		},
 		{
-			"id": 5,
-			"name": "client_5",
-			"email": "client_5@gmail.com",
+			"id": 4,
+			"name": "bolodoido",
+			"email": "client_5555@gmail.com",
 			"phone": "(19) 99999-9999",
 			"cpf": "99990555599"
 		}
 	],
 	"purchases": [
 		{
-			"user_id": 1,
-			"user_email": "client_1@gmail.com",
+			"purchase_id": 1,
+			"user_id": 2,
 			"products": [
 				{
-					"product_id": 1,
+					"product_id": 2,
 					"name": "product_01",
-					"cost": 100,
-					"quantity": 2
-				},
+					"cost": 200,
+					"quantity": 10
+				}
+			]
+		},
+		{
+			"purchase_id": 2,
+			"user_id": 2,
+			"products": [
+				{
+					"product_id": 2,
+					"name": "product_01",
+					"cost": 200,
+					"quantity": 10
+				}
+			]
+		},
+		{
+			"purchase_id": 3,
+			"user_id": 1,
+			"products": [
 				{
 					"product_id": 2,
 					"name": "product_02",
 					"cost": 200,
-					"quantity": 1
-				}
-			]
-		},
-		{
-			"user_id": 4,
-			"user_email": "client_4@gmail.com",
-			"products": [
-				{
-					"product_id": 3,
-					"name": "product_03",
-					"cost": 1000,
-					"quantity": 1
-				},
-				{
-					"product_id": 1,
-					"name": "product_01",
-					"cost": 200,
-					"quantity": 5
-				}
-			]
-		},
-		{
-			"user_id": 4,
-			"user_email": "client_4@gmail.com",
-			"products": [
-				{
-					"product_id": 3,
-					"name": "product_03",
-					"cost": 1000,
-					"quantity": 1
-				},
-				{
-					"product_id": 1,
-					"name": "product_01",
-					"cost": 200,
-					"quantity": 5
-				}
-			]
-		},
-		{
-			"user_id": 2,
-			"user_email": "client_2@gmail.com",
-			"products": [
-				{
-					"product_id": 1,
-					"name": "product_01",
-					"cost": 200,
 					"quantity": 10
+				},
+				{
+					"product_id": 1,
+					"name": "product_01",
+					"cost": 500,
+					"quantity": 10
+				}
+			]
+		},
+		{
+			"purchase_id": 4,
+			"user_id": 1,
+			"products": [
+				{
+					"product_id": 3,
+					"name": "product_03",
+					"cost": 1000,
+					"quantity": 1
 				}
 			]
 		}

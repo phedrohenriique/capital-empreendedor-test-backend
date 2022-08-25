@@ -9,28 +9,28 @@
 	"users": [
 		{
 			"id": 1,
-			"name": "bolodoido",
+			"name": "Lucas",
 			"email": "client_5@gmail.com",
 			"phone": "(19) 99999-9999",
 			"cpf": "99990555599"
 		},
 		{
 			"id": 2,
-			"name": "client_2",
+			"name": "Rafaela",
 			"email": "client_2@gmail.com",
 			"phone": "(19) 99999-9999",
 			"cpf": "99990555599"
 		},
 		{
 			"id": 3,
-			"name": "double barrel",
+			"name": "Henrique",
 			"email": "client_4@gmail.com",
 			"phone": "(19) 99999-9999",
 			"cpf": "99990555599"
 		},
 		{
 			"id": 4,
-			"name": "bolodoido",
+			"name": "Joana",
 			"email": "client_5555@gmail.com",
 			"phone": "(19) 99999-9999",
 			"cpf": "99990555599"
